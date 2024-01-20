@@ -29,37 +29,34 @@
         <p id="gold" style="color: rgb(186, 186, 218); font-size: 200%;"></p>
     <script>
       
-      // Accept: application/json;
-        let dd=new Date;
-        let y=dd.getFullYear();
-        let m=dd.getMonth()+1;
-        let d=dd.getDate();
+     const apiUrl = 'http://api.nbp.pl/api/exchangerates/rates/a/chf/';
+// const outputElement = document.getElementById('bdl');
 
-        document.getElementById("dzis").innerHTML="Date  : "+d+"-"+m+"-"+y;
-
-// kod
-async function wiesio(){
-    event.preventDefault();
-let urls = [
-'http://api.nbp.pl/api/exchangerates/rates/a/chf/',
-'http://api.nbp.pl/api/exchangerates/rates/a/eur/',
-'http://api.nbp.pl/api/exchangerates/rates/a/usd/']
-
-try {
-      let promiseArray = [];
-     let results = await fetch(urls[0]);
-     let res2 = await results.json();
-
-      let zuzia = JSON.stringify(res2);
-      let ewa = JSON.parse(zuzia);
-      //document.getElementById("chf").innerHTML= ewa.currency + " " + ewa.rates[0].mid;
-    document.getElementById("chf").innerHTML= "rome is eternal city;
-    } catch (err) {
-      document.getElementById("chf").innerHTML=err.name + " " + err.message;
+fetch(apiUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
+    return response.json();
+  })
+  .then(data => {
+    // Display data in an HTML element
+  //  outputElement.textContent = JSON.stringify(data);
+var zuzia = JSON.stringify(data);
+// var zuzia = data.json();
+var ewa  = JSON.parse(zuzia);
+// outputElement.textContent = zuzia;
+//    outputElement.textContent = zuzia.search("rownumber");
 
-  }
-  wiesio();
+
+
+document.getElementById("bdl").innerHTML = ewa.currency + " " +ewa.rates[0].mid;
+   
+    // responseMessage.textContent = data ;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 
 
     </script>
