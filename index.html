@@ -51,8 +51,8 @@ try {
 
       let zuzia = JSON.stringify(res2);
       let ewa = JSON.parse(zuzia);
-      document.getElementById("chf").innerHTML= ewa.currency + " " + ewa.rates[0].mid;
-    document.getElementById("chf").innerHTML= res2;
+      //document.getElementById("chf").innerHTML= ewa.currency + " " + ewa.rates[0].mid;
+    document.getElementById("chf").innerHTML= zuzia;
     } catch (err) {
       document.getElementById("chf").innerHTML=err.name + " " + err.message;
     }
