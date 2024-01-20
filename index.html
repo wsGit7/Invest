@@ -11,17 +11,12 @@
             font-size: 160%;
             background-image: url('Cosmos.jpg') ;
             background-size: cover;
-           
             color: rgb(233, 58, 93);
         }
-
     </style>
 </head>
-
     <body>
-      
         <p id="dzis" style="font-size: small; text-align: left;"></p>
-        
         <p><b>WIESIO HEUTE NACHRICHTEN</b></p>
         <p id="chf" style="color: rgb(160, 160, 222);"></p>
         <p id="eur" style="color: rgb(158, 158, 205);"></p>
@@ -29,38 +24,14 @@
         <p id="gold" style="color: rgb(186, 186, 218); font-size: 200%;"></p>
     <script>
       
-     const apiUrl = 'http://api.nbp.pl/api/exchangerates/rates/a/chf/';
-// const outputElement = document.getElementById('bdl');
-
+const apiUrl = 'http://api.nbp.pl/api/exchangerates/rates/a/chf/';
 fetch(apiUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Display data in an HTML element
-  //  outputElement.textContent = JSON.stringify(data);
-var zuzia = JSON.stringify(data);
-// var zuzia = data.json();
-var ewa  = JSON.parse(zuzia);
-// outputElement.textContent = zuzia;
-//    outputElement.textContent = zuzia.search("rownumber");
-
-
-
-document.getElementById("bdl").innerHTML = ewa.currency + " " +ewa.rates[0].mid;
-   
-    // responseMessage.textContent = data ;
+  .then(res => {res=>res.json()).then(data=>
+document.getElementById("bdl").innerHTML = data;
   })
   .catch(error => {
-    console.error('Error:', error);
+    document.getElementById("bdl").innerHTML = error.name;
   });
-
-
     </script>
-
     </body>
-  
 </html>
