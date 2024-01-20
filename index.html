@@ -38,45 +38,30 @@
         document.getElementById("dzis").innerHTML="Date  : "+d+"-"+m+"-"+y;
 
 // kod
-const array = [
-fetch('http://api.nbp.pl/api/exchangerates/rates/a/chf/')]
-//fetch('http://api.nbp.pl/api/exchangerates/rates/a/eur/'),
-//fetch('http://api.nbp.pl/api/exchangerates/rates/a/usd/')]
-//fetch('http://api.nbp.pl/api/cenyzlota/last/1/')]
+async function wiesio(){
+const urls = [
+'http://api.nbp.pl/api/exchangerates/rates/a/chf/',
+'http://api.nbp.pl/api/exchangerates/rates/a/eur/',
+'http://api.nbp.pl/api/exchangerates/rates/a/usd/']
 
-async function Main(){
+try {
+      let promiseArray = [];
+      // for (let i = 0; i < urls.length; i++) {
+      //   promiseArray.push(fetch(urls[i]));
+      // }
+     const results = await fetch(urls[0]);
+     const res2 = await results.json();
 
-try{
-const res = await Promise.all(array);
-const data = await Promise.all(res.map((item)=>{
-  return item.json();
-}))
-  
-var zuzia = JSON.stringify(data[0]);
-var ewa  = JSON.parse(zuzia);
-document.getElementById("chf").innerHTML = ewa.currency + " " +ewa.rates[0].mid;
-/*   
-var zuzia1 = JSON.stringify(data[1]);
-var ewa1  = JSON.parse(zuzia1);
-document.getElementById("eur").innerHTML = ewa1.currency + " " +ewa1.rates[0].mid;
-
-var zuzia2 = JSON.stringify(data[2]);
-var ewa2  = JSON.parse(zuzia2);
-document.getElementById("usd").innerHTML = ewa2.currency + " " +ewa2.rates[0].mid;
-
-var zuzia3 = JSON.stringify(data[3]);
-var ewa3  = JSON.parse(zuzia3);
-document.getElementById("gold").innerHTML = "złoto : " + ewa3[0].cena + "  zł/gr";
-*/
+      var zuzia = JSON.stringify(res2);
+      var ewa = JSON.parse(zuzia);
+      document.getElementById("chf").innerHTML= ewa.currency + " " + ewa.rates[0].mid;
+    } catch (err) {
+      document.getElementById("chf").innerHTML=err.name;
+    }
 
   }
+  wiesio();
 
-  catch(err) {
-    // console.log("error");
-    document.getElementById("chf").innerHTML=err.message;
-  }
-}
-Main();
 
     </script>
 
