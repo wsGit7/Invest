@@ -39,7 +39,7 @@
 
 // kod
 async function wiesio(){
-const urls = [
+let urls = [
 'http://api.nbp.pl/api/exchangerates/rates/a/chf/',
 'http://api.nbp.pl/api/exchangerates/rates/a/eur/',
 'http://api.nbp.pl/api/exchangerates/rates/a/usd/']
@@ -53,7 +53,7 @@ try {
       let ewa = JSON.parse(zuzia);
       document.getElementById("chf").innerHTML= ewa.currency + " " + ewa.rates[0].mid;
     } catch (err) {
-      document.getElementById("chf").innerHTML=err.name;
+      document.getElementById("chf").innerHTML=err.name + " " + err.message;
     }
 
   }
