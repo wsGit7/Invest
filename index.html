@@ -46,11 +46,11 @@ const urls = [
 
 try {
       let promiseArray = [];
-     const results = await fetch(urls[0]);
-     const res2 = await results.json();
+     let results = await fetch(urls[0]);
+     let res2 = await results.json();
 
-      var zuzia = JSON.stringify(res2);
-      var ewa = JSON.parse(zuzia);
+      let zuzia = JSON.stringify(res2);
+      let ewa = JSON.parse(zuzia);
       document.getElementById("chf").innerHTML= ewa.currency + " " + ewa.rates[0].mid;
     } catch (err) {
       document.getElementById("chf").innerHTML=err.name;
