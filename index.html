@@ -30,10 +30,10 @@
     <script>
       
       // Accept: application/json;
-        dd=new Date;
-        y=dd.getFullYear();
-        m=dd.getMonth()+1;
-        d=dd.getDate();
+        let dd=new Date;
+        let y=dd.getFullYear();
+        let m=dd.getMonth()+1;
+        let d=dd.getDate();
 
         document.getElementById("dzis").innerHTML="Date  : "+d+"-"+m+"-"+y;
 
@@ -46,9 +46,6 @@ const urls = [
 
 try {
       let promiseArray = [];
-      // for (let i = 0; i < urls.length; i++) {
-      //   promiseArray.push(fetch(urls[i]));
-      // }
      const results = await fetch(urls[0]);
      const res2 = await results.json();
 
