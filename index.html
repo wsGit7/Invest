@@ -23,20 +23,21 @@
         <p id="usd" style="color: rgb(110, 110, 156);"></p>
         <p id="gold" style="color: rgb(186, 186, 218); font-size: 200%;"></p>
     <script>
- 
-        const getData = async (url) => {
-   try {
-     const data = await fetch("http://api.nbp.pl/api/exchangerates/rates/a/chf/");
-     
-       //console.log(data.json());
-     return data;
-   } catch (e) {
-     document.getElementById("bdl").innerHTML = e
-   }
+      async function getCurrency() {
+      let response = await fetch("http://api.nbp.pl/api/exchangerates/rates/a/chf/");
+      let json = await response.json();
+      return json.rates[0].mid;
+}
 
-            
- }
-document.getElementById("bdl").innerHTML = "rome is the best city";
+async function run() {
+  let xxx = await getCurrency();
+  //console.log(`waluta to ${xxx}`);
+  document.getElementById("bdl").innerHTML = "CHF "+xxx;
+}
+run()
+ //-----------
+       
+
         
       
   
