@@ -32,7 +32,9 @@
 async function run() {
   let xxx = await getCurrency();
   //console.log(`waluta to ${xxx}`);
-  document.getElementById("bdl").innerHTML = xxx.id;
+    let zosia = JSON.stringify(json);
+    let ewa = JSON.parse(zosia);
+  document.getElementById("bdl").innerHTML = ewa.id;
 }
 run()
  //-----------
