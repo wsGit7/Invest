@@ -4,45 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
     <style>
         body{
             text-align: center;
             font-size: 160%;
-            background-image: url('Cosmos.jpg') ;
-            background-size: cover;
-            color: rgb(233, 58, 93);
+            background-color: rgb(207, 212, 245);
+           
+            color: crimson;
         }
+
     </style>
 </head>
+
     <body>
-        <p id="dzis" style="font-size: small; text-align: left;"></p>
-        <p><b>WIESIO HEUTE NACHRICHTEN</b></p>
-        <p id="bdl" style="color: rgb(160, 160, 222);"></p>
-        <p id="eur" style="color: rgb(158, 158, 205);"></p>
-        <p id="usd" style="color: rgb(110, 110, 156);"></p>
-        <p id="gold" style="color: rgb(186, 186, 218); font-size: 200%;"></p>
-    <script>
-      async function getCurrency() {
-      let response = await fetch("https://bdl.stat.gov.pl/api/v1/variables/1688?format=json");
-      let json = await response.json();
-      return json;
-}
-
-async function run() {
-  let xxx = await getCurrency();
-  //console.log(`waluta to ${xxx}`);
-    let zosia = JSON.stringify(json);
-    let ewa = JSON.parse(zosia);
-  document.getElementById("bdl").innerHTML = ewa.id;
-}
-run()
- //-----------
-       
-
+        <p id="dzis" style="font-size: small;"></p>
         
+        <p><b>HEUTE NACHRICHTEN</b></p>
+        <p id="bdl"></p>
+    <script>
       
-  
+      // Accept: application/json;
+        dd=new Date;
+        y=dd.getFullYear();
+        m=dd.getMonth()+1;
+        d=dd.getDate();
+
+        document.getElementById("dzis").innerHTML="Date  : "+d+"-"+m+"-"+y;
+
+// kod
+
+const apiUrl = 'http://api.nbp.pl/api/exchangerates/rates/a/chf/';
+// const outputElement = document.getElementById('bdl');
+
+fetch(apiUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Display data in an HTML element
+  //  outputElement.textContent = JSON.stringify(data);
+var zuzia = JSON.stringify(data);
+// var zuzia = data.json();
+var ewa  = JSON.parse(zuzia);
+// outputElement.textContent = zuzia;
+//    outputElement.textContent = zuzia.search("rownumber");
+
+
+
+document.getElementById("bdl").innerHTML = ewa.currency + " " +ewa.rates[0].mid;
+   
+    // responseMessage.textContent = data ;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
     </script>
+
     </body>
+
 </html>
