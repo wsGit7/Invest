@@ -24,17 +24,9 @@
         <p id="gold" style="color: rgb(186, 186, 218); font-size: 200%;"></p>
     <script>
 
-const fetchData = async () => {
-    try {
-        const response = await fetch('http://api.nbp.pl/api/exchangerates/rates/a/chf/?format=json');
-        document.getElementById("bdl").innerHTML = response.json();
-       // return await response.json();
-        
-    }
-    catch (ex) {
-        updateMessageBox(MESSAGEBOX_CLASSES.ERROR, ex)
-    }
-}
+
+        document.getElementById("bdl").innerHTML = "rome is the best city";
+      
   
     </script>
     </body>
