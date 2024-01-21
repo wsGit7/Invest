@@ -27,12 +27,14 @@
         const getData = async (url) => {
    try {
      const data = await fetch("http://api.nbp.pl/api/exchangerates/rates/a/chf/");
-     document.getElementById("bdl").innerHTML = "rome is the best city";
+     
        //console.log(data.json());
      return data;
    } catch (e) {
      document.getElementById("bdl").innerHTML = e
    }
+
+            document.getElementById("bdl").innerHTML = "rome is the best city";
  }
 
         
