@@ -24,15 +24,15 @@
         <p id="gold" style="color: rgb(186, 186, 218); font-size: 200%;"></p>
     <script>
       async function getCurrency() {
-      let response = await fetch("http://api.nbp.pl/api/exchangerates/rates/a/chf/");
+      let response = await fetch("https://bdl.stat.gov.pl/api/v1/variables/1688?format=json");
       let json = await response.json();
-      return json.rates[0].mid;
+      return json;
 }
 
 async function run() {
   let xxx = await getCurrency();
   //console.log(`waluta to ${xxx}`);
-  document.getElementById("bdl").innerHTML = "CHF "+xxx;
+  document.getElementById("bdl").innerHTML = xxx;
 }
 run()
  //-----------
